@@ -18,6 +18,7 @@ setupCamera();
 window.addEventListener('click', onMouseClick);
 animate();
 
+
 function setupVideoTexture() {
     const introVideo = document.createElement('video');
     introVideo.src = 'video/intro.mp4';
