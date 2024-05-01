@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple 3D Portfolio</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #enterButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@v0.147.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.147.0/examples/jsm/"
+          }
+        }
+      </script>
+      
+</head>
+<body>
+    <button id="enterButton">Enter</button>
+    <script>
+        document.getElementById('enterButton').addEventListener('click', function() {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'app.js';
+            document.body.appendChild(script);
+            this.remove(); // Optionally remove the button after loading the script
+        });
+    </script>
+    
+</body>
+</html>
