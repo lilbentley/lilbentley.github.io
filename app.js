@@ -41,7 +41,11 @@ function createVideoTexture(url, loop = false) {
     const video = document.createElement('video');
     video.src = url;
     video.loop = loop;
-    video.muted = true;  // Necessary for autoplay on most browsers
+    video.muted = true;  
+
+    
+
+
     video.load();  // Important for setting up the initial state
     const texture = new THREE.VideoTexture(video);
     texture.minFilter = THREE.LinearFilter; 
@@ -228,8 +232,11 @@ function playIntroThenVideo(selectedVideo) {
         }
     });
 
+    video.addEventListener('canplaythrough', function() {
     videos.intro.image.play();
     currentVideo = videos.intro;
+    }, false);
+
     videos.intro.image.onended = () => {
         material.map = selectedVideo;
         selectedVideo.image.currentTime = 0;  // Ensure the video starts from the beginning
