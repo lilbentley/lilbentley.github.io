@@ -25,7 +25,20 @@
             font-size: 24px;
             cursor: pointer;
         }
+
+        #preloadModel {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
     </style>
+
+
     <script type="importmap">
         {
           "imports": {
@@ -39,7 +52,10 @@
 <body>
     <button id="enterButton">Enter</button>
     <button id="preload">Preload Videos</button>
+    <button id="preloadModel">Preload Model</button>
+
     <script>
+
         document.getElementById('enterButton').addEventListener('click', function() {
             const script = document.createElement('script');
             script.type = 'module';
@@ -60,18 +76,52 @@
 
 
         document.getElementById('preload').addEventListener('click', function() {
-    const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4'];
-    videoIds.forEach(id => {
-        const video = document.getElementById(id);
-        video.load();
-        video.addEventListener('canplaythrough', function() {
-            console.log(`Video ${id} is ready to play.`);
+                 const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4'];
+
+                 videoIds.forEach(id => {
+                         const video = document.getElementById(id);
+                         video.load();
+                         video.addEventListener('canplaythrough', function() {
+                                    console.log(`Video ${id} is ready to play.`);
+                         });
+                });
         });
-    });
-});
 
 
     </script>
+
+
+<script type="module">
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import * as THREE from 'three';
+
+    // Declare a global variable to store the loaded model
+    window.loadedModel = null;
+
+    document.getElementById('preloadModel').addEventListener('click', function() {
+        const loader = new GLTFLoader();
+        loader.load(
+            'scene.glb', // URL of the GLTF model
+            function(gltf) {
+                console.log('Model is loaded');
+                // Store the loaded model in the global variable
+                window.loadedModel = gltf;
+            },
+            function(xhr) {
+                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function(error) {
+                console.log('An error happened', error);
+            }
+        );
+    });
+</script>
+
+
+
+
+
+
 
     
 
