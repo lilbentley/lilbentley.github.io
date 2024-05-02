@@ -232,11 +232,9 @@ function playIntroThenVideo(selectedVideo) {
         }
     });
 
-    video.addEventListener('canplaythrough', function() {
     videos.intro.image.play();
     currentVideo = videos.intro;
-    }, false);
-
+    
     videos.intro.image.onended = () => {
         material.map = selectedVideo;
         selectedVideo.image.currentTime = 0;  // Ensure the video starts from the beginning
