@@ -7,7 +7,7 @@
     <style>
         body { margin: 0; }
         canvas { display: block; }
-        #enterButton {
+        #preload {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -16,121 +16,75 @@
             font-size: 24px;
             cursor: pointer;
         }
-        #preload {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        #preloadModel {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
     </style>
-
-
     <script type="importmap">
         {
-          "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@v0.147.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.147.0/examples/jsm/"
-          }
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@v0.147.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.147.0/examples/jsm/"
+            }
         }
-      </script>
-      
+    </script>
 </head>
 <body>
-    <button id="enterButton">Enter</button>
-    <button id="preload">Preload Videos</button>
-    <button id="preloadModel">Preload Model</button>
+    <button id="preload">Preload Everything</button>
 
-    <script>
+    <script type="module">
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import * as THREE from 'three';
 
-        document.getElementById('enterButton').addEventListener('click', function() {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.src = 'app.js';
-            document.body.appendChild(script);
-            this.remove(); // Optionally remove the button after loading the script
-        });
+        document.getElementById('preload').addEventListener('click', async function() {
+            try {
+                // Preload Videos
+                const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4', 'video_5', 'video_6', 'video_contact'];
+                for (let id of videoIds) {
+                    const response = await fetch(`video/${id}.mp4`);
+                    const blob = await response.blob(); // Convert the response to a blob
+                    const url = URL.createObjectURL(blob); // Create a URL for the blob
+                    document.getElementById(id).src = url; // Set the video source to the blob URL
+                }
 
-        document.getElementById('preload').addEventListener('click', function() {
-            document.getElementById('intro').load();
-            document.getElementById('video_1').load();
-            document.getElementById('video_2').load();
-            document.getElementById('video_3').load();
-            document.getElementById('video_4').load();
-            this.remove();
-    
-        });
-
-
-        document.getElementById('preload').addEventListener('click', function() {
-                 const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4'];
-
-                 videoIds.forEach(id => {
-                         const video = document.getElementById(id);
-                         video.load();
-                         video.addEventListener('canplaythrough', function() {
-                                    console.log(`Video ${id} is ready to play.`);
-                         });
+                // Preload Model
+                const loader = new GLTFLoader();
+                await new Promise((resolve, reject) => {
+                    loader.load(
+                        'scene.glb', // URL of the GLTF model
+                        function(gltf) {
+                            console.log('Model is loaded');
+                            window.loadedModel = gltf;
+                            resolve();
+                        },
+                        function(xhr) {
+                            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                        },
+                        function(error) {
+                            console.log('An error happened during model loading:', error);
+                            reject(error);
+                        }
+                    );
                 });
+
+                // Load the main script and remove the button
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = 'app.js';
+                document.body.appendChild(script);
+                this.remove(); // Optionally remove the button after loading everything
+
+            } catch (error) {
+                console.error('Failed to preload all resources:', error);
+            }
         });
-
-
     </script>
 
-
-<script type="module">
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-    import * as THREE from 'three';
-
-    // Declare a global variable to store the loaded model
-    window.loadedModel = null;
-
-    document.getElementById('preloadModel').addEventListener('click', function() {
-        const loader = new GLTFLoader();
-        loader.load(
-            'scene.glb', // URL of the GLTF model
-            function(gltf) {
-                console.log('Model is loaded');
-                // Store the loaded model in the global variable
-                window.loadedModel = gltf;
-            },
-            function(xhr) {
-                console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-            },
-            function(error) {
-                console.log('An error happened', error);
-            }
-        );
-    });
-</script>
-
-
-
-
-
-
-
-    
-
-    <video id="intro" src="video/intro.mp4" preload="auto" style="display: none;"></video>
-    <video id="video_1" src="video/video_1.mp4" preload="auto" style="display: none;"></video>
-    <video id="video_2" src="video/video_2.mp4" preload="auto" style="display: none;"></video>
-    <video id="video_3" src="video/video_3.mp4" preload="auto" style="display: none;"></video>
-    <video id="video_4" src="video/video_4.mp4" preload="auto" style="display: none;"></video>
-    
-    <!-- Add more video elements as needed -->
+    <!-- Video Elements -->
+    <video id="intro" preload="none" style="display: none;"></video>
+    <video id="video_1" preload="none" style="display: none;"></video>
+    <video id="video_2" preload="none" style="display: none;"></video>
+    <video id="video_3" preload="none" style="display: none;"></video>
+    <video id="video_4" preload="none" style="display: none;"></video>
+    <video id="video_5" preload="none" style="display: none;"></video>
+    <video id="video_6" preload="none" style="display: none;"></video>
+    <video id="video_contact" preload="none" style="display: none;"></video>
 </body>
 </html>
