@@ -15,14 +15,14 @@ let cameraTargetPosition = new THREE.Vector3(0, 1, 8);
 camera.position.set(0, 1, 8);   
 
 const videos = {
-    intro: createVideoTexture('video/intro.mp4'),
-    video1: createVideoTexture('video/video_1.mp4', true),
-    video2: createVideoTexture('video/video_2.mp4', true),
-    video3: createVideoTexture('video/video_3.mp4', true),
-    video4: createVideoTexture('video/video_4.mp4', true),
-    video5: createVideoTexture('video/video_5.mp4', true),
+    intro: createVideoTexture('intro'),
+    video1: createVideoTexture('video_1', true),
+    video2: createVideoTexture('video_2', true),
+    video3: createVideoTexture('video_3', true),
+    video4: createVideoTexture('video_4', true),
+   /*  video5: createVideoTexture('video/video_5.mp4', true),
     video6: createVideoTexture('video/video_6.mp4', true),
-    videoContact: createVideoTexture('video/video_contact.mp4', true),
+    videoContact: createVideoTexture('video/video_contact.mp4', true), */
 };
 
 let currentVideo = videos.intro;
@@ -37,20 +37,28 @@ const material = new THREE.MeshBasicMaterial({ map: videos.intro });
 let remoteAction;
 
 
-function createVideoTexture(url, loop = false) {
-    const video = document.createElement('video');
-    video.src = url;
+function createVideoTexture(id, loop = false) {
+    const video = document.getElementById(id);
+    /* video.src = url; */
     video.loop = loop;
     video.muted = true;  
 
     
 
 
-    video.load();  // Important for setting up the initial state
+    /* video.load();  // Important for setting up the initial state */
     const texture = new THREE.VideoTexture(video);
     texture.minFilter = THREE.LinearFilter; 
     texture.encoding = THREE.sRGBEncoding; // Avoids issues with non-power-of-2 video dimensions
     return texture;
+}
+
+
+function disposeVideoTexture(texture) {
+    texture.image.pause();
+    texture.image.src = '';
+    texture.image.load();
+    texture.dispose();
 }
 
 
@@ -233,12 +241,20 @@ function playIntroThenVideo(selectedVideo) {
     });
 
     videos.intro.image.play();
+
+    
+
+
     currentVideo = videos.intro;
     
     videos.intro.image.onended = () => {
         material.map = selectedVideo;
         selectedVideo.image.currentTime = 0;  // Ensure the video starts from the beginning
         selectedVideo.image.play();
+
+        if (currentVideo !== videos.intro) {
+            disposeVideoTexture(currentVideo);
+        }
         currentVideo = selectedVideo;
 
         // Update the video texture on the GLTF model's screen to the selected video
