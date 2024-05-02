@@ -9,7 +9,7 @@
     document.body.appendChild(renderer.domElement);
 
     let mixer, clock = new THREE.Clock(), isClose = true;
-    let animations; 
+    let animations, remoteAction; 
     renderer.outputEncoding = THREE.sRGBEncoding;
     let cameraTargetPosition = new THREE.Vector3(0, 1, 8);
     camera.position.set(0, 1, 8);   
@@ -34,7 +34,7 @@
     const material = new THREE.MeshBasicMaterial({ map: videos.intro });
 
 
-    let remoteAction;
+    
 
 
     function createVideoTexture(id, loop = false) {
@@ -63,43 +63,39 @@
 
 
     function loadModel() {
-        const loader = new GLTFLoader();
-        loader.load('scene.glb', function(gltf) {
+        if (window.loadedModel) {
+            const gltf = window.loadedModel;
             scene.add(gltf.scene);
             gltf.scene.scale.set(5, 5, 5);
             gltf.scene.position.set(0, 0, 0);
-            console.log('Model loaded:', gltf.scene);
-
+            console.log('Model used from preload:', gltf.scene);
+    
             mixer = new THREE.AnimationMixer(gltf.scene);
             animations = gltf.animations; 
-
+    
             remoteAction = mixer.clipAction(animations[0]);
             remoteAction.setLoop(THREE.LoopOnce);
             remoteAction.clampWhenFinished = true;
-
-        gltf.scene.traverse(function(node){
-            if (node.isMesh && node.material) {
+    
+            gltf.scene.traverse(function(node){
+                if (node.isMesh && node.material) {
                     if (node.name === "SCREEN") {
-                    const screenMaterial = new THREE.MeshBasicMaterial({map: videos.intro,});
-            
-                    node.material = screenMaterial;
-            
-                    const light = new THREE.PointLight(0xffffff, 100, 2);
-                    node.getWorldPosition(light.position);
-                    light.position.z += 1;
-                    scene.add(light);
+                        const screenMaterial = new THREE.MeshBasicMaterial({map: videos.intro,});
+    
+                        node.material = screenMaterial;
+    
+                        const light = new THREE.PointLight(0xffffff, 100, 2);
+                        node.getWorldPosition(light.position);
+                        light.position.z += 1;
+                        scene.add(light);
                     }
-        
-        
                 }
-        });
-
-
-
-        }, undefined, function(error) {
-            console.error('Error loading GLTF:', error);
-        });
+            });
+        } else {
+            console.error('Preloaded model is not available.');
+        }
     }
+    
 
 
 
