@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple 3D Portfolio</title>
+    <title>Simple 3D Portfolio</title> 
+    <div id="loading" style="display: none;">
+        <p id="loadingPercentage">0%</p>
+    </div>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -16,6 +19,23 @@
             font-size: 24px;
             cursor: pointer;
         }
+        #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* make sure it's on top */
+    }
+    #loadingPercentage {
+        font-size: 3em; /* make the text bigger */
+        color: #000; /* change the text color to black */
+        position: absolute;
+        bottom: 20%;
+    }
     </style>
     <script type="importmap">
         {
@@ -31,7 +51,80 @@
 
     <script type="module">
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-        import * as THREE from 'three';
+        import * as THREE from 'three'; 
+
+        document.getElementById('preload').addEventListener('click', async function() {
+    try {
+        // Zeige die Ladeanimation an
+        const loadingElement = document.getElementById('loading');
+        const loadingPercentageElement = document.getElementById('loadingPercentage');
+        loadingElement.style.display = 'flex';
+
+        // Preload Videos
+        const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4', 'video_5', 'video_6', 'video_contact'];
+let totalLoaded = 0;
+let totalSize = 0;
+
+for (let id of videoIds) {
+    const response = await fetch(`video/${id}.mp4`, {
+        method: 'GET',
+        headers: {},
+        mode: 'cors',
+        cache: 'default',
+        redirect: 'follow',
+        referrer: 'no-referrer',
+        signal: null,
+    });
+
+    const contentLength = response.headers.get('Content-Length');
+    if (contentLength === null) {
+        throw new Error(`Content-Length was not provided for video/${id}.mp4`);
+    }
+
+    totalSize += parseInt(contentLength);
+
+    response.body.onprogress = (event) => {
+        totalLoaded += event.loaded;
+        const percent = (totalLoaded / totalSize) * 100;
+        loadingPercentageElement.textContent = `${Math.round(percent)}%`;
+    };
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const video = document.getElementById(id);
+    video.src = url;
+}
+
+        // Preload Model
+        const loader = new GLTFLoader();
+        await new Promise((resolve, reject) => {
+            loader.load(
+                'scene.glb', // URL of the GLTF model
+                function(gltf) {
+                    console.log('Model is loaded');
+                    window.loadedModel = gltf;
+
+                    // Verstecke die Ladeanimation, wenn das Modell geladen ist
+                    loadingElement.style.display = 'none';
+
+                    resolve();
+                },
+                function(xhr) {
+                    totalSize += xhr.total;
+                    totalLoaded += xhr.loaded;
+                    const percent = (totalLoaded / totalSize) * 100;
+                    loadingPercentageElement.textContent = `${Math.round(percent)}%`;
+                },
+                function(error) {
+                    console.log('An error happened during model loading:', error);
+                    reject(error);
+                }
+            );
+        });
+    } catch (error) {
+        console.error('Failed to preload all resources:', error);
+    }
+});
 
         document.getElementById('preload').addEventListener('click', async function() {
             try {
