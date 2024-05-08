@@ -99,7 +99,6 @@ function loadModel() {
 
 
 
-
 function animButton(button){
     const buttonAction = mixer.clipAction(animations[1], button);
     buttonAction.setLoop(THREE.LoopOnce);
@@ -111,6 +110,7 @@ function animButton(button){
         buttonAction.play();
     }
 }
+
 
 function switchStates(){
     if (!remoteAction.isRunning()) {
@@ -138,6 +138,7 @@ function switchStates(){
     } 
 
 }
+
 
 function onClick(event) {
     const mouse = new THREE.Vector2(
