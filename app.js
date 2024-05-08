@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// Scene Setup
+
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
@@ -23,9 +23,7 @@ const videos = {
     video5: createVideoTexture('video_5', true),
     video6: createVideoTexture('video_6', true),
     videoContact: createVideoTexture('video_contact', true),
-/*  video5: createVideoTexture('video/video_5.mp4', true),
-    video6: createVideoTexture('video/video_6.mp4', true),
-    videoContact: createVideoTexture('video/video_contact.mp4', true), */
+
 };
 
 let currentVideo = videos.intro;
@@ -270,14 +268,8 @@ function playIntroThenVideo(selectedVideo) {
 
 
 function autoStart() {
-    
-    
-    
-    
     loadModel();
     playIntroThenVideo(videos.video1);
-    
-    
     animate();
 }
 
