@@ -66,7 +66,7 @@ let totalLoaded = 0;
 let totalSize = 0;
 
 for (let id of videoIds) {
-    const response = await fetch(`video/${id}.mp4`, {
+    const response = await fetch(`3d_portfolio/video/${id}.mp4`, {
         method: 'GET',
         headers: {},
         mode: 'cors',
@@ -99,7 +99,7 @@ for (let id of videoIds) {
         const loader = new GLTFLoader();
         await new Promise((resolve, reject) => {
             loader.load(
-                'scene.glb', // URL of the GLTF model
+                '3d_portfolio/scene.glb', // URL of the GLTF model
                 function(gltf) {
                     console.log('Model is loaded');
                     window.loadedModel = gltf;
@@ -131,7 +131,7 @@ for (let id of videoIds) {
                 // Preload Videos
                 const videoIds = ['intro', 'video_1', 'video_2', 'video_3', 'video_4', 'video_5', 'video_6', 'video_contact'];
                 for (let id of videoIds) {
-                    const response = await fetch(`video/${id}.mp4`);
+                    const response = await fetch(`3d_portfolio/video/${id}.mp4`);
                     const blob = await response.blob(); // Convert the response to a blob
                     const url = URL.createObjectURL(blob); // Create a URL for the blob
                     document.getElementById(id).src = url; // Set the video source to the blob URL
@@ -141,7 +141,7 @@ for (let id of videoIds) {
                 const loader = new GLTFLoader();
                 await new Promise((resolve, reject) => {
                     loader.load(
-                        'scene.glb', // URL of the GLTF model
+                        '3d_portfolio/scene.glb', // URL of the GLTF model
                         function(gltf) {
                             console.log('Model is loaded');
                             window.loadedModel = gltf;
@@ -160,7 +160,7 @@ for (let id of videoIds) {
                 // Load the main script and remove the button
                 const script = document.createElement('script');
                 script.type = 'module';
-                script.src = 'app.js';
+                script.src = '3d_portfolio/app.js';
                 document.body.appendChild(script);
                 this.remove(); // Optionally remove the button after loading everything
 
