@@ -1,1 +1,61 @@
-new portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Your Name</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="portfolio/video/background.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <main>
+        <section id="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Your tagline or introduction here.</p>
+            <a href="#portfolio" class="cta">View My Work</a>
+        </section>
+        <section id="portfolio">
+            <!-- Portfolio items -->
+        </section>
+        <section id="about">
+            <!-- About section -->
+        </section>
+        <section id="contact">
+            <!-- Contact form -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <div class="social-links">
+            <!-- Social icons -->
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("bg-video");
+
+            window.addEventListener("scroll", function () {
+                const value = window.scrollY;
+                video.style.transform = `translateY(${value * 0.5}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
