@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="css/portfolio.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <header>
         <nav>
-            <ul>
+            <ul class="">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#portfolio">Projects</a></li>
@@ -19,25 +20,57 @@
             </ul>
         </nav>
     </header>
-    <div class="video-background">
-        <video autoplay muted loop id="bg-video">
-            <source src="portfolio/video/background.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
     <main>
         <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Your tagline or introduction here.</p>
-            <a href="#portfolio" class="cta">View My Work</a>
+            <div class="flex flex-col items-center justify-center text-white h-screen w-full">
+                <div class="video-background">
+                    <video autoplay muted loop id="bg-video">
+                        <source src="portfolio/video/background.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="person_block flex flex-col items-center justify-center ">
+                    <h1 class="text-xl mb-5">ARTEMIY VRUBEL</h1>
+                    <p class="text-md ">3D GENERALIST & GAME DESIGNER</p>
+                </div>
+                <div class="links mt-20 flex items-center justify-center h-20 w-1/2">
+                    <ul class="w-full h-full flex items-center justify-center">
+                        <li class="link linkedin">
+                            <a href="https://www.linkedin.com/in/a-vrubel/">
+                                <img src="./img/icons/logo-linkedin.svg" alt="linkedin">
+                            </a>
+                        </li>
+                        <li class="link instagram">
+                            <a href="https://www.instagram.com/3d_bentley/">
+                                <img src="./img/icons/logo-instagram.svg" alt="linkedin">
+                            </a>
+                        </li>
+                        <li class="link github">
+                            <a href="https://github.com/lilbentley">
+                                <img src="./img/icons/logo-octocat.svg" alt="linkedin">
+                            </a>
+                        </li>
+                        <li class="link youtube">
+                            <a href="https://youtube.com/@lilbentley?si=1RfgTAAuwSf56D1k">
+                                <img src="./img/icons/logo-youtube.svg" alt="linkedin">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
-        <section id="portfolio">
+        <section id="portfolio" class="h-screen flex items-center justify-center  ">
             <!-- Portfolio items -->
+             <div class="title flex w-1/2 text-white h-full mt-20 justify-center">
+                <h2>SKILLS & EXPERIENCE</h2>
+             </div>
         </section>
-        <section id="about">
-            <!-- About section -->
+        <section id="about" class="h-screen parallax dark_wood">
+            <div>
+
+            </div>
         </section>
-        <section id="contact">
+        <section id="contact" class="h-screen">
             <!-- Contact form -->
         </section>
     </main>
