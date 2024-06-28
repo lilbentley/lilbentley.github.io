@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="css/portfolio.css">
     <link rel="stylesheet" href="css/home.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery.min.css
+    " rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -104,9 +111,37 @@
              </div>
              
         </section>
-        <section id="about" class="h-screen w-full flex flex-col items-center justify-center">
-            <div>
-                    
+        <section id="about" class="h-full w-full flex flex-col items-center justify-start bg-white">
+            <div class="flex flex-col w-5/6 text-white w-full mt-20 justify-center">
+                <h2 class="text-center text-black border-b-2 w-96 pb-5 mx-auto" >PORTFOLIO</h2>
+                <div id="static-thumbnails" class="gallery mt-20 flex flex-wrap items-center justify-center w-2/4 h-screen mx-auto">
+                    <a href="img/porfolio/1.jpg">
+                        <img src="./img/porfolio/1.jpg" alt="1">
+                    </a>
+                    <a href="img/porfolio/2.jpg">
+                        <img src="./img/porfolio/2.jpg" alt="2">
+                    </a>
+                    <a href="img/porfolio/3.png">
+                        <img src="./img/porfolio/3.png" alt="">
+                    </a>
+                    <a href="img/porfolio/4.png">
+                        <img src="./img/porfolio/4.png" alt="">
+                    </a>
+                    <a href="img/porfolio/5.png">
+                        <img src="./img/porfolio/5.png" alt="5">
+                    </a>
+                    <a href="img/porfolio/6.png">
+                        <img src="./img/porfolio/6.png" alt="
+                        <div class='img_content flex flex-col h-screen text-black'>
+                            <img src='./img/porfolio/6.png' class='img_outro'>
+                            <img src='./img/porfolio/6/deda.png' class='h-full'>
+                            <img src='./img/porfolio/6/ribka.png' class='h-full'>
+                        </div>">
+                    </a>
+                    <a href="img/porfolio/7.png">
+                        <img src="./img/porfolio/7.png" alt="7">
+                    </a>
+                </div>
             </div>
         </section>
         <section id="contact" class="h-screen">
@@ -119,27 +154,32 @@
             <!-- Social icons -->
         </div>
     </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-    // tailwind.config = {
-    //     theme: {
-    //         screens: {
-    //             'sm': '640px',
-    //             'md': '768px',
-    //             'lg': '1024px',
-    //             'xl': '1280px',
-    //             '2xl': '1536px',
-    //         }
-    //     }
-    // }
+
+        lightGallery(document.getElementById('static-thumbnails'), {
+            animateThumb: false,
+            zoomFromOrigin: false,
+            allowMediaOverlap: true,
+            toggleThumb: true,
+        });
+        const $lgGalleryMethodsDemo = document.getElementById('static-thumbnails');
+        $lgGalleryMethodsDemo.addEventListener('lgAfterOpen', () => {
+            $("body").addClass('scroll_hidden');
+        })
+        $lgGalleryMethodsDemo.addEventListener('lgAfterClose', () => {
+            $("body").removeClass('scroll_hidden');
+        })
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const video = document.getElementById("bg-video");
 
-            window.addEventListener("scroll", function () {
+            window.addEventListener("scroll", function (e) {
                 const value = window.scrollY;
                 video.style.transform = `translateY(${value * 0.5}px)`;
             });
         });
-    </script>
+</script>
 </body>
 </html>

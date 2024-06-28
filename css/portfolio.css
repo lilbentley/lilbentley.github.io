@@ -8,6 +8,9 @@ body {
     background-color: #333;
 }
 
+.scroll_hidden {
+    overflow-y: hidden;
+}
 header {
     background: rgba(51, 51, 51, 0.8);
     color: #fff;
@@ -104,7 +107,7 @@ footer {
     height: 32px;
 }
 h2 {
-    font-size: 2rem;
+    font-size: 2rem!important;
 }
 
 .skill img {
@@ -117,4 +120,29 @@ width: 127px;
 }
 #portfolio h2 {
     font-size: 2rem;
+}
+.gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+.lg-outer .lg-object {
+    max-height: 80%!important;
+    overflow-y: scroll;
+}
+.img_content {
+    overflow-y: scroll;
+
+    background-color: black;
+}
+.img_content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.img_content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.img_outro {
+    height: 100%;
+    margin: 0 auto;
 }
