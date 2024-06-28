@@ -79,10 +79,10 @@ footer {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    max-height: 500px; 
+    max-height: 100vh; 
 }
 .dark_wood {
-    background-image: url('../img/darkWood.webp');
+    background-image: url('../img/darkWood.jpg');
 }
 .person_block h1 {
     font-size: 2rem;
@@ -103,14 +103,15 @@ footer {
 h2 {
     font-size: 2rem;
 }
-.title {
-    border-bottom: #fff 2px solid;
+
+.skill img {
+width: 127px;
 }
-.title::after {
-    content: "_";
-    position: relative;
-    width: 32px;
-    height: 2px;
-    color: #fff;
-    margin-top: 20px;
+.skill_subtitle {
+    font-weight: 200;
+    font-size: .9rem;
+    width: 200px;
+}
+#portfolio h2 {
+    font-size: 2rem;
 }
