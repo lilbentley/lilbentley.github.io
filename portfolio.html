@@ -59,15 +59,54 @@
                 </div>
             </div>
         </section>
-        <section id="portfolio" class="h-screen flex items-center justify-center  ">
+        <section id="portfolio" class="h-screen w-full flex items-center justify-center parallax dark_wood">
             <!-- Portfolio items -->
-             <div class="title flex w-1/2 text-white h-full mt-20 justify-center">
-                <h2>SKILLS & EXPERIENCE</h2>
+             <div class="flex flex-col w-5/6 text-white h-full mt-20 justify-center">
+                <h2 class="text-center border-b-2 w-96 pb-5 mx-auto" >SKILLS & EXPERIENCE</h2>
+                <ul class="flex flex-col items-center justify-center w-full h-full py-20 mx-auto sm:flex-row">
+                    <li class="skill text-center flex flex-col items-center justify-start mx-10 h-96">
+                        <img src="./img/skills/maya.png" alt="maya">
+                        <span class="skill_title text-xl my-10 text-white">
+                            MAYA
+                        </span>
+                        <p class="skill_subtitle">
+                            Modelling, Shading and Lighting skills for rendering in Maya or exporting out for game engines
+                        </p>
+                    </li>
+                    <li class="skill text-center  flex flex-col items-center justify-start mx-10 h-96">
+                        <img src="./img/skills/unreal.svg" alt="ur4">
+                        <span class="skill_title text-xl my-10 text-white">
+                            UNREAL ENGINE 4
+                        </span>
+                        <p class="skill_subtitle">
+                            Environment building, Blueprints, full game development. Represented UE4 at EGX 2014
+                        </p>
+                    </li>
+                    <li class="skill text-center  flex flex-col items-center justify-start mx-10 h-96">
+                        <img src="./img/skills/ps.png" alt="ps">
+                        <span class="skill_title text-xl my-10 text-white">
+                            PHOTOSHOP
+                        </span>
+                        <p class="skill_subtitle">
+                            Graphic design, texture creation and web design
+                        </p>
+                    </li>
+                    <li class="skill text-center  flex flex-col items-center justify-start mx-10 h-96">
+                        <img src="./img/skills/zbrush.svg" alt="zBrush">
+                        <span class="skill_title text-xl my-10 text-white">
+                            zBRUSH
+                        </span>
+                        <p class="skill_subtitle">
+                            3D Sculpting, Modelling, Surface detailing work for baked texture maps, 
+                        </p>
+                    </li>
+                 </ul>
              </div>
+             
         </section>
-        <section id="about" class="h-screen parallax dark_wood">
+        <section id="about" class="h-screen w-full flex flex-col items-center justify-center">
             <div>
-
+                    
             </div>
         </section>
         <section id="contact" class="h-screen">
@@ -81,6 +120,18 @@
         </div>
     </footer>
     <script>
+    // tailwind.config = {
+    //     theme: {
+    //         screens: {
+    //             'sm': '640px',
+    //             'md': '768px',
+    //             'lg': '1024px',
+    //             'xl': '1280px',
+    //             '2xl': '1536px',
+    //         }
+    //     }
+    // }
+
         document.addEventListener("DOMContentLoaded", function () {
             const video = document.getElementById("bg-video");
 
