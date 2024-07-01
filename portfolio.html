@@ -157,14 +157,49 @@
             
         </section>
 
-        <section id="contact" class="h-screen">
-            <form>      
-                <input name="name" type="text" class="feedback-input" placeholder="NAME*" />   
-                <input name="email" type="text" class="feedback-input" placeholder="E-MAIL*" />
-                <textarea name="text" class="feedback-input" placeholder="MESSAGE*"></textarea>
-                <input type="submit" value="SEND"/>
-              </form>
-        </section>
+        <section id="contact" class="h-screen flex items-center justify-center">
+            <div class="container mx-auto px-4 relative bg-white rounded-lg shadow-lg p-4 pb-24">
+          
+              <!-- Centered Image at the Top -->
+              <div class="absolute -top-48 left-1/2 transform -translate-x-1/2">
+                <img src="/img/vrubel.jpg" alt="Your Image" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg">
+                
+            </div>
+
+
+            <h2 class="pt-24 text-xl  mb-4 text-center">CONTACT ME</h2>
+
+
+            <div class="text-2xl leading-10 flex flex-col md:flex-row items-center">
+                <!-- Left Side: Text Column -->
+                <div class="md:w-1/2 flex flex-col justify-center items-center md:items-start text-center md:text-left p-16">
+                
+                <p class="">Working and living in Berlin, Germany</p>
+
+                <a  class= "pt-20 underline" href="mailto:artemiy.vrubel@gmail.com">artemiy.vrubel@gmail.com</a>
+                <p class= "pt-20">Tel: +49 176 767973 92</p>
+            </div>
+          
+                <!-- Right Side: Form -->
+                <div class="md:w-1/2 p-4 pt-16">
+                  
+                  <form class="w-full max-w-lg mx-auto md:mx-0">
+                    <input name="name" type="text" class="feedback-input mb-4" placeholder="NAME*" />   
+                    <input name="email" type="text" class="feedback-input mb-4" placeholder="E-MAIL*" />
+                    <textarea name="text" class="feedback-input mb-4" placeholder="MESSAGE*"></textarea>
+                    <input type="submit" value="SEND" class="submit-button"/>
+                  </form>
+                </div>
+              </div>
+          
+            </div>
+          </section>
+          
+          
+          
+          
+          
+          
 
     </main>
 
