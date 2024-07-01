@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="css/portfolio.css">
     <link rel="stylesheet" href="css/home.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery.min.css" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.3/simple-lightbox.min.css"></head>
 
 
 
@@ -136,15 +134,15 @@
                     </a>
 
                     <a href="img/porfolio/3.png">
-                        <img src="./img/porfolio/3.png" alt="">
+                        <img src="./img/porfolio/3.png">
                     </a>
 
                     <a href="img/porfolio/4.png">
-                        <img src="./img/porfolio/4.png" alt="">
+                        <img src="./img/porfolio/4.png">
                     </a>
 
                     <a href="img/porfolio/5.png">
-                        <img src="./img/porfolio/5.png" alt="5">
+                        <img src="./img/porfolio/5.png">
                     </a>
 
                     <a href="img/porfolio/6.png">
@@ -157,43 +155,43 @@
                     </a>
 
                     <a href="img/porfolio/7.png">
-                        <img src="./img/porfolio/7.png" alt="7">
+                        <img src="./img/porfolio/7.png">
                     </a>
 
                     <a href="img/porfolio/8.png">
-                        <img src="./img/porfolio/8.png" alt="8">
+                        <img src="./img/porfolio/8.png">
                     </a>
 
                     <a href="img/porfolio/9.png">
-                        <img src="./img/porfolio/9.png" alt="9">
+                        <img src="./img/porfolio/9.png">
                     </a>
 
                     <a href="img/porfolio/10.png">
-                        <img src="./img/porfolio/10.png"  class="object-[0%_30%]" alt="10">
+                        <img src="./img/porfolio/10.png"  class="object-[0%_30%]">
                     </a>
 
                     <a href="img/porfolio/11.png">
-                        <img src="./img/porfolio/11.png" alt="11">
+                        <img src="./img/porfolio/11.png">
                     </a>
 
                     <a href="img/porfolio/12.png">
-                        <img src="./img/porfolio/12.png" alt="12">
+                        <img src="./img/porfolio/12.png">
                     </a>
 
                     <a href="img/porfolio/13.png">
-                        <img src="./img/porfolio/13.png" alt="13">
+                        <img src="./img/porfolio/13.png">
                     </a>
 
                     <a href="img/porfolio/14.png" class="object-[0%_0%]">
-                        <img src="./img/porfolio/14.png" alt="14">
+                        <img src="./img/porfolio/14.png">
                     </a>
 
                     <a href="img/porfolio/15.png">
-                        <img src="./img/porfolio/15.png" alt="15">
+                        <img src="./img/porfolio/15.png">
                     </a>
 
                     <a href="img/porfolio/16.png">
-                        <img src="./img/porfolio/16.png" alt="16">
+                        <img src="./img/porfolio/16.png">
                     </a>
 
                 </div>
@@ -269,32 +267,18 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.3/simple-lightbox.min.js"></script>
     <script>
-
-        lightGallery(document.getElementById('static-thumbnails'), {
-            animateThumb: false,
-            zoomFromOrigin: false,
-            allowMediaOverlap: false,
-            toggleThumb: true,
-            
-        });
-        const $lgGalleryMethodsDemo = document.getElementById('static-thumbnails');
-        $lgGalleryMethodsDemo.addEventListener('lgAfterOpen', () => {
-            $("body").addClass('scroll_hidden');
-        })
-        $lgGalleryMethodsDemo.addEventListener('lgAfterClose', () => {
-            $("body").removeClass('scroll_hidden');
-        })
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const video = document.getElementById("bg-video");
-
-            window.addEventListener("scroll", function (e) {
-                const value = window.scrollY;
-                video.style.transform = `translateY(${value * 0.5}px)`;
-            });
-        });
+      document.addEventListener('DOMContentLoaded', function () {
+        new SimpleLightbox('.gallery a', { 
+        captions: true,
+        captionSelector: 'self',
+        captionType: 'data',
+        captionsData: 'caption',
+        captionPosition: 'bottom',
+        captionDelay: 250,
+         });
+      });
     </script>
 
 </body>

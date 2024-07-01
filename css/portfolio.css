@@ -149,7 +149,14 @@ width: 127px;
     margin: 0 auto;
 }
 
-
+.sl-overlay {
+    background: #000000 !important;
+    opacity: .86 !important;
+}
+    
+.sl-counter {
+color: white !important;
+}
 
 
 
