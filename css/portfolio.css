@@ -53,14 +53,14 @@ footer {
     margin: 0;
 }
 
-/* Specific styles for each section */
+
 
 
 #portfolio, #about, #contact {
     padding: 50px 20px;
 }
 
-/* Video Background */
+
 .video-background {
     position: absolute;
     top: 0;
@@ -122,9 +122,11 @@ width: 127px;
     font-size: 2rem;
 }
 .gallery img {
-    width: 250px;
-    height: 250px;
+    width: 256px;
+    height: 256px;
     object-fit: cover;
+    
+    
 }
 .lg-outer .lg-object {
     max-height: 80%!important;
@@ -157,29 +159,10 @@ width: 127px;
 
 
 
-.feedback-input {
-  color:rgb(78, 78, 78);
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight:500;
-  font-size: 18px;
-  border-radius: 5px;
-  line-height: 22px;
-  background-color: transparent;
-  border:2px solid #8c8c8c;
-  transition: all 0.3s;
-  padding: 13px;
-  margin-bottom: 15px;
-  width:100%;
-  box-sizing: border-box;
-  outline:0;
-}
 
 
-textarea {
-  height: 150px;
-  line-height: 150%;
-  resize:vertical;
-}
+
+
 
 
 
